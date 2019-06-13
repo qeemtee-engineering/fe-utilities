@@ -6,14 +6,14 @@
   "license": "MIT",
   "repository": "git@bitbucket.org:sheraziali/utilities-front-end.git",
   "devDependencies": {
-    "babel-preset-react-app": "^3.1.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "babel-preset-react-app": "^3.1.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-scripts": "1.1.1",
-    "react-transition-group": "^2.2.1"
+    "react-transition-group": "^2.9.0"
   },
   "peerDependencies": {
-    "react": "^16.2.0",
+    "react": "^16.8.6",
     "react-dom": "^16.2.0"
   },
   "scripts": {
