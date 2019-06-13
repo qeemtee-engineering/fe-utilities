@@ -1,10 +1,13 @@
 {
   "name": "utilities-front-end",
-  "version": "0.3.7",
+  "version": "1.0.0",
   "author": "Ali Raza",
   "main": "dist/main.js",
   "license": "MIT",
-  "repository": "git@bitbucket.org:sheraziali/utilities-front-end.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/qeemtee/utilities-front-end.git"
+  },
   "devDependencies": {
     "babel-preset-react-app": "^3.1.2",
     "react": "^16.8.6",
@@ -25,5 +28,12 @@
   "dependencies": {
     "create-react-context": "^0.1.6",
     "highlight-words-core": "^1.1.2"
-  }
+  },
+  "description": "**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**",
+  "homepage": "https://bitbucket.org/qeemtee/utilities-front-end#readme",
+  "keywords": [
+    "qeemtee",
+    "utilities",
+    "front-end"
+  ]
 }
