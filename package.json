@@ -1,12 +1,12 @@
 {
-  "name": "utilities-front-end",
+  "name": "common-utilities",
   "version": "1.0.0",
   "author": "Ali Raza",
   "main": "dist/main.js",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/qeemtee/utilities-front-end.git"
+    "url": "git+ssh://git@bitbucket.org/qeemtee/common-utilities.git"
   },
   "devDependencies": {
     "babel-preset-react-app": "^3.1.2",
@@ -30,7 +30,7 @@
     "highlight-words-core": "^1.1.2"
   },
   "description": "**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**",
-  "homepage": "https://bitbucket.org/qeemtee/utilities-front-end#readme",
+  "homepage": "https://bitbucket.org/qeemtee/common-utilities#readme",
   "keywords": [
     "qeemtee",
     "utilities",
