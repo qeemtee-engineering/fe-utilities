@@ -14,10 +14,10 @@
   },
   "peerDependencies": {
     "react": "^16.8.6",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.8.6"
   },
   "scripts": {
-    "build": "NODE_ENV=production ./node_modules/react-scripts/node_modules/.bin/webpack",
+    "build": "webpack",
     "build:demo": "react-scripts build",
     "start": "react-scripts start",
     "test": "react-scripts test --env=jsdom"
