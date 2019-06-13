@@ -1,0 +1,19 @@
+{
+  "name": "fe-utilities",
+  "version": "0.0.1",
+  "description": "Utilities for the frontend repo",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/qeemtee/fe-utilities.git"
+  },
+  "keywords": [
+    "frontend"
+  ],
+  "author": "Kamran Pirwani",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/qeemtee/fe-utilities#readme"
+}
