@@ -1,0 +1,29 @@
+{
+  "name": "utilities-front-end",
+  "version": "0.3.7",
+  "author": "Ali Raza",
+  "main": "/dist/main.js",
+  "license": "MIT",
+  "repository": "git@bitbucket.org:sheraziali/utilities-front-end.git",
+  "devDependencies": {
+    "babel-preset-react-app": "^3.1.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.1",
+    "react-transition-group": "^2.2.1"
+  },
+  "peerDependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production ./node_modules/react-scripts/node_modules/.bin/webpack",
+    "build:demo": "react-scripts build",
+    "start": "react-scripts start",
+    "test": "react-scripts test --env=jsdom"
+  },
+  "dependencies": {
+    "create-react-context": "^0.1.6",
+    "highlight-words-core": "^1.1.2"
+  }
+}
