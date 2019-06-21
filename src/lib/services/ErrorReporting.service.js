@@ -2,8 +2,8 @@ import { SentryErrorReporting } from './ErrorReporting'
 
 class ErrorReportingService {
 
-    constructor() {
-        this.providers = [new SentryErrorReporting()];
+    constructor(sentryKey) {
+        this.providers = [new SentryErrorReporting(sentryKey)];
     }
 
     configureContext(userId, emailAddress) {

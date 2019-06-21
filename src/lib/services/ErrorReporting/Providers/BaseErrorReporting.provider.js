@@ -15,7 +15,6 @@ class BaseErrorReportingProvider {
         // SUBCLASSES AND FILL OUT
         throw Error('Subclass should fill addBreadcrumb');
     }
-
 }
 
 export default BaseErrorReportingProvider;
