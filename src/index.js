@@ -1,1 +1,1 @@
-export { AnalyticsService, ErrorReportingService } from './lib'
+export * from './lib';

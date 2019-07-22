@@ -1,2 +1,3 @@
-export { AnalyticsService } from './services';
-export { ErrorReportingService } from './services';
+export { ErrorReportingService, AnalyticsService } from './services';
+export * from './constants';
+export * from './helpers';

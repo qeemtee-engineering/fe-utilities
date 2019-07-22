@@ -1,6 +1,7 @@
-class AnalyticsService {
-    constructor(){
-    }
-}   
+import MixPanelAnalytics from './Analytics/MixPanel.provider';
+import GoogleAnalytics from './Analytics/GoogleAnalytics.provider';
 
-export default AnalyticsService;
+export default {
+  MixPanelAnalytics,
+  GoogleAnalytics
+};
