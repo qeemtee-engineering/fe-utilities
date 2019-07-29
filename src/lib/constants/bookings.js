@@ -2,7 +2,7 @@
 export const BOOKING_STATUSES = {
   RESERVED: {
     val: 0,
-    title: 'Pending'
+    title: 'Reserved'
   },
   PAYMENT_CONFIRMED: {
     val: 1,
