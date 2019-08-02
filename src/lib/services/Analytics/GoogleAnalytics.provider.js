@@ -9,18 +9,18 @@ export default class GoogleAnalytics {
       );
       return;
     }
-    if (userDetails) {
+    if (userDetails.id) {
       this.visitor = ua(token, userDetails.id, {
         strictCidFormat: false,
         http: true
       });
       delete userDetails.id;
-      Object.keys(userDetails).forEach(key => {
-        this.visitor.set(key, userDetails[key]);
-      });
     } else {
       this.visitor = ua(token);
     }
+    Object.keys(userDetails).forEach(key => {
+      this.visitor.set(key, userDetails[key]);
+    });
     console.info('Google Analytics has been initialized');
   }
 
