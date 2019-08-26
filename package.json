@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/qeemtee/fe-utilities.git"
+    "url": "git+ssh://git@github.com/qeemtee/fe-utilities.git"
   },
   "keywords": [
     "frontend"
   ],
   "author": "Kamran Pirwani",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/qeemtee/fe-utilities#readme",
+  "homepage": "https://github.com/qeemtee/fe-utilities#readme",
   "dependencies": {
     "@sentry/browser": "^5.4.0",
     "lodash": "4.17.11",
