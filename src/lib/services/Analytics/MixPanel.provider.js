@@ -3,7 +3,7 @@ import * as mixpanel from 'mixpanel-browser';
 export default class MixPanelAnalytics {
   constructor(token, userDetails) {
     const isRelease = process.env.NODE_ENV === 'production';
-    if (!isRelase && token === undefined) {
+    if (!isRelease && token === undefined) {
       console.warn(
         'Missing token for Mix Panel. Set the MIXPANEL_TOKEN env var correctly to configure analyitcs'
       );
