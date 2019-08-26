@@ -2,8 +2,8 @@ import ua from 'universal-analytics';
 
 export default class GoogleAnalytics {
   constructor(token, userDetails = {}) {
-    // const isRelease = process.env.NODE_ENV === 'production';
-    if (token === undefined) {
+    const isRelease = process.env.NODE_ENV === 'production';
+    if (!isRelease && token === undefined) {
       console.warn(
         'Missing token for GA. Set the GA_TOKEN env var correctly to configure analyitcs'
       );
