@@ -6,7 +6,9 @@ class SentryErrorReporting extends BaseErrorReportingProvider {
     super();
     const isRelease = process.env.NODE_ENV === 'production';
     if (dsn === undefined) {
-      console.warn('Missing FE DSN for Sentry. Set the SENTRY_FE_DSN env var correctly to configure error reporting');
+      console.warn(
+        'Missing FE DSN for Sentry. Set the SENTRY_FE_DSN env var correctly to configure error reporting'
+      );
       return;
     }
     console.info('Sentry Error Reporting has been initialized');
@@ -14,7 +16,7 @@ class SentryErrorReporting extends BaseErrorReportingProvider {
   }
 
   configureContext(userId, emailAddress) {
-    Sentry.configureScope((scope) => {
+    Sentry.configureScope(scope => {
       scope.setUser({ id: userId, email: emailAddress });
     });
   }
@@ -27,7 +29,7 @@ class SentryErrorReporting extends BaseErrorReportingProvider {
     Sentry.addBreadcrumb({
       category,
       message,
-      level: Sentry.Severity.Error
+      level: Sentry.Severity.Error,
     });
   }
 }

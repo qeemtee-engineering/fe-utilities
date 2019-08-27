@@ -12,7 +12,7 @@ export default class GoogleAnalytics {
     if (userDetails.id) {
       this.visitor = ua(token, userDetails.id, {
         strictCidFormat: false,
-        http: true
+        http: true,
       });
       delete userDetails.id;
     } else {

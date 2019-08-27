@@ -3,5 +3,5 @@ import GoogleAnalytics from './Analytics/GoogleAnalytics.provider';
 
 export default {
   MixPanelAnalytics,
-  GoogleAnalytics
+  GoogleAnalytics,
 };

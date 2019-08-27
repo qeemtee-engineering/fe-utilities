@@ -2,96 +2,96 @@
 export const BOOKING_STATUSES = {
   RESERVED: {
     val: 0,
-    title: 'Reserved'
+    title: 'Reserved',
   },
   PAYMENT_CONFIRMED: {
     val: 1,
-    title: 'Confirmed'
+    title: 'Confirmed',
   },
   PAYMENT_DECLINED: {
     val: 2,
-    title: 'Declined'
+    title: 'Declined',
   },
   BOOKING_EXPIRED: {
     val: 3,
-    title: 'Expired'
+    title: 'Expired',
   },
   BOOKING_RESCHEDULED: {
     val: 4,
-    title: 'Rescheduled'
+    title: 'Rescheduled',
   },
   BOOKING_CANCELLED: {
     val: 5,
-    title: 'Cancelled'
+    title: 'Cancelled',
   },
   BOOKING_IN_PROGRESS: {
     val: 6,
-    title: 'In Progress'
+    title: 'In Progress',
   },
   BOOKING_COMPLETED: {
     val: 7,
-    title: 'Completed'
+    title: 'Completed',
   },
   PAYMENT_REFUNDED: {
     val: 8,
-    title: 'Refunded'
+    title: 'Refunded',
   },
   AWAITING_GATEWAY_PAYMENT: {
     val: 9,
-    title: 'Awaiting Gateway Payment'
+    title: 'Awaiting Gateway Payment',
   },
   RECONCILIATION_PENDING: {
     val: 10,
-    title: 'Reconciliation Pending'
+    title: 'Reconciliation Pending',
   },
   PAYMENT_RECONCILED_HOST: {
     val: 11,
-    title: 'Reconciled Host'
+    title: 'Reconciled Host',
   },
   PAYMENT_RECONCILED_MERCHANT: {
     val: 12,
-    title: 'Reconciled Merchant'
+    title: 'Reconciled Merchant',
   },
   PAYMENT_RECONCILED: {
     val: 13,
-    title: 'Reconciled'
+    title: 'Reconciled',
   },
   AWAITING_HOST_PAYMENT: {
     val: 14,
-    title: 'Awaiting Host Payment'
+    title: 'Awaiting Host Payment',
   },
   PENDING_HOST_PAYMENT_VERIFICATION: {
     val: 15,
-    title: 'Pending Host Payment Verification'
+    title: 'Pending Host Payment Verification',
   },
   HOST_PAYMENT_RECEIVED: {
     val: 16,
-    title: 'Host Payment Received'
+    title: 'Host Payment Received',
   },
   MERCHANT_AWAITING_PAYMENT: {
     val: 17,
-    title: 'Merchant Awaiting Payment'
+    title: 'Merchant Awaiting Payment',
   },
   MERCHANT_PAYMENT_SENT: {
     val: 18,
-    title: 'Merchant Payment Sent'
+    title: 'Merchant Payment Sent',
   },
   PENDING_SETTLEMENT: {
     val: 19,
-    title: 'Pending Settlement'
+    title: 'Pending Settlement',
   },
   PENDING_CONFIRMATION: {
     val: 20,
-    title: 'Pending Confirmation'
+    title: 'Pending Confirmation',
   },
   SETTLEMENT_COMPLETE: {
     val: 21,
-    title: 'Settlement Complete'
+    title: 'Settlement Complete',
   },
   INVOICE_RAISED: {
     val: 22,
-    title: 'Invoice Raised'
-  }
+    title: 'Invoice Raised',
+  },
 };
 
 export const ADMIN_BOOKING_FILTER_STATUSES = [
@@ -107,7 +107,7 @@ export const ADMIN_BOOKING_FILTER_STATUSES = [
   BOOKING_STATUSES.PENDING_SETTLEMENT,
   BOOKING_STATUSES.PENDING_CONFIRMATION,
   BOOKING_STATUSES.SETTLEMENT_COMPLETE,
-  BOOKING_STATUSES.INVOICE_RAISED
+  BOOKING_STATUSES.INVOICE_RAISED,
 ];
 
 export const HOST_BOOKING_FILTER_STATUSES = [
@@ -123,7 +123,7 @@ export const HOST_BOOKING_FILTER_STATUSES = [
   BOOKING_STATUSES.PENDING_SETTLEMENT,
   BOOKING_STATUSES.PENDING_CONFIRMATION,
   BOOKING_STATUSES.SETTLEMENT_COMPLETE,
-  BOOKING_STATUSES.INVOICE_RAISED
+  BOOKING_STATUSES.INVOICE_RAISED,
 ];
 
 export const MERCHANT_BOOKING_FILTER_STATUSES = [
@@ -138,5 +138,5 @@ export const MERCHANT_BOOKING_FILTER_STATUSES = [
   BOOKING_STATUSES.PENDING_SETTLEMENT,
   BOOKING_STATUSES.PENDING_CONFIRMATION,
   BOOKING_STATUSES.SETTLEMENT_COMPLETE,
-  BOOKING_STATUSES.INVOICE_RAISED
+  BOOKING_STATUSES.INVOICE_RAISED,
 ];

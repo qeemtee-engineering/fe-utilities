@@ -18,42 +18,42 @@ export default {
       file: path.join(__dirname, 'lib', 'main.bundle.js'),
       format: 'iife',
       name: 'fe_utils',
-      sourcemap: true
+      sourcemap: true,
     },
     {
       file: path.join(__dirname, 'lib', 'main.js'),
       format: 'cjs',
-      sourcemap: true
+      sourcemap: true,
     },
     {
       file: path.join(__dirname, 'lib', 'main.es.js'),
       format: 'es',
-      sourcemap: true
-    }
+      sourcemap: true,
+    },
   ],
   plugins: [
     del({
-      targets: 'lib/*'
+      targets: 'lib/*',
     }),
     json(),
     resolve(),
     commonjs(),
     babel({
-      exclude: ['node_modules/**']
+      exclude: ['node_modules/**'],
     }),
     minify({
-      comments: false
+      comments: false,
     }),
     sourceMaps(),
     gzip({
       gzipOptions: {
-        level: 9
+        level: 9,
       },
       minSize: 1000,
-      additionalFilesDelay: 5000
+      additionalFilesDelay: 5000,
     }),
     filesize({
-      showGzippedSize: true
-    })
-  ]
+      showGzippedSize: true,
+    }),
+  ],
 };

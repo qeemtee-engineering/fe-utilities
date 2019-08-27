@@ -17,36 +17,36 @@ export default {
       file: path.join(__dirname, 'lib', 'main.bundle.js'),
       format: 'iife',
       name: 'fe_utils',
-      sourcemap: true
+      sourcemap: true,
     },
     {
       file: path.join(__dirname, 'lib', 'main.js'),
       format: 'cjs',
-      sourcemap: true
+      sourcemap: true,
     },
     {
       file: path.join(__dirname, 'lib', 'main.es.js'),
       format: 'es',
-      sourcemap: true
-    }
+      sourcemap: true,
+    },
   ],
   watch: {
     chokidar: true,
-    exclude: ['node_modules/**']
+    exclude: ['node_modules/**'],
   },
   plugins: [
     del({
-      targets: 'lib/*'
+      targets: 'lib/*',
     }),
     eslint({
-      fix: true
+      fix: true,
     }),
     json(),
     resolve(),
     commonjs(),
     babel({
-      exclude: ['node_modules/**']
+      exclude: ['node_modules/**'],
     }),
-    sourceMaps()
-  ]
+    sourceMaps(),
+  ],
 };
