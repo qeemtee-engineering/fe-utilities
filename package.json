@@ -52,7 +52,6 @@
     "rollup-plugin-sourcemaps": "^0.4.2"
   },
   "pre-commit": [
-    "prettify-code",
-    "build"
+    "prettify-code"
   ]
 }
