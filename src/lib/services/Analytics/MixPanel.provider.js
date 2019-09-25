@@ -3,12 +3,12 @@ import * as mixpanel from 'mixpanel-browser';
 export default class MixPanelAnalytics {
   constructor(token) {
     const isRelease = process.env.NODE_ENV === 'production';
-    if (!isRelease || token === undefined) {
-      console.warn(
-        'Missing token for Mix Panel. Set the MIXPANEL_TOKEN env var correctly to configure analyitcs'
-      );
-      return;
-    }
+    // if (!isRelease || token === undefined) {
+    //   console.warn(
+    //     'Missing token for Mix Panel. Set the MIXPANEL_TOKEN env var correctly to configure analyitcs'
+    //   );
+    //   return;
+    // }
     mixpanel.init(token);
     console.info('Mix Panel has been initialized');
   }
@@ -44,5 +44,4 @@ export default class MixPanelAnalytics {
   register(userDetails) {
     mixpanel.register(userDetails);
   }
-
 }

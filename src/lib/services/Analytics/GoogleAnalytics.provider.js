@@ -3,12 +3,13 @@ import ua from 'universal-analytics';
 export default class GoogleAnalytics {
   constructor(token) {
     const isRelease = process.env.NODE_ENV === 'production';
-    if (!isRelease || token === undefined) {
-      console.warn(
-        'Missing token for GA. Set the GA_TOKEN env var correctly to configure analyitcs'
-      );
-      return;
-    }
+    // if (!isRelease || token === undefined) {
+    //   console.warn(
+    //     'Missing token for GA. Set the GA_TOKEN env var correctly to configure analyitcs'
+    //   );
+    //   return;
+    // }
+    this.token = token;
     this.visitor = ua(token);
     console.info('Google Analytics has been initialized');
   }
@@ -23,7 +24,7 @@ export default class GoogleAnalytics {
 
   register(userDetails) {
     if (userDetails.id) {
-      this.visitor = ua(token, userDetails.id, {
+      this.visitor = ua(this.token, userDetails.id, {
         strictCidFormat: false,
         http: true
       });
