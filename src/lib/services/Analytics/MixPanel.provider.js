@@ -1,18 +1,15 @@
 import * as mixpanel from 'mixpanel-browser';
 
 export default class MixPanelAnalytics {
-  constructor(token, userDetails) {
+  constructor(token) {
     const isRelease = process.env.NODE_ENV === 'production';
-    if (!isRelase && token === undefined) {
+    if (!isRelease || token === undefined) {
       console.warn(
         'Missing token for Mix Panel. Set the MIXPANEL_TOKEN env var correctly to configure analyitcs'
       );
       return;
     }
     mixpanel.init(token);
-    if (userDetails) {
-      mixpanel.register(userDetails);
-    }
     console.info('Mix Panel has been initialized');
   }
 
@@ -43,4 +40,9 @@ export default class MixPanelAnalytics {
   trackPage(pageName, properties) {
     mixpanel.track(pageName, properties);
   }
+
+  register(userDetails) {
+    mixpanel.register(userDetails);
+  }
+
 }
