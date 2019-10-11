@@ -21,7 +21,6 @@ export const getBookingStatusSearchParams = statusArray => {
   return params;
 };
 
-// TODO: MOVE TO UTILITIES
 export const getWeekDate = dayINeed => {
   if (moment().isoWeekday() <= dayINeed) {
     return moment().isoWeekday(dayINeed);
@@ -31,7 +30,6 @@ export const getWeekDate = dayINeed => {
     .isoWeekday(dayINeed);
 };
 
-// TODO: MOVE TO UTILITIES
 export const getExpiryTime = receivedBookingDetails => {
   let expiryTime = moment(receivedBookingDetails.slot.startTime).tz(
     receivedBookingDetails.slot.timezone
@@ -77,7 +75,6 @@ export const getExpiryTime = receivedBookingDetails => {
   return expiryTime;
 };
 
-// TODO: MOVE TO UTILITIES
 export const canCollectPayment = receivedBookingDetails => {
   let canCollect = true;
   receivedBookingDetails.statusHistory.forEach(element => {
@@ -99,7 +96,6 @@ export const canCollectPayment = receivedBookingDetails => {
   return canCollect;
 };
 
-// TODO: MOVE TO UTILITIES
 export const showExpiry = receivedBookingDetails => {
   if (!canCollectPayment(receivedBookingDetails)) {
     return false;
@@ -110,13 +106,3 @@ export const showExpiry = receivedBookingDetails => {
   }
   return false;
 };
-
-// TODO: MOVE TO UTILITIES
-// export const getExpiryToShow = receivedBookingDetails => {
-//   let expiryTime = getExpiryTime(receivedBookingDetails);
-//   return (
-//     <p>
-//       {expiryTime.format('dddd, DD MMM YY')} | {expiryTime.format('LT')}
-//     </p>
-//   );
-// };
