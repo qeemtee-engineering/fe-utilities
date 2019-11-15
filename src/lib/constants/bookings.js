@@ -143,3 +143,12 @@ export const MERCHANT_BOOKING_FILTER_STATUSES = [
   BOOKING_STATUSES.SETTLEMENT_COMPLETE,
   BOOKING_STATUSES.INVOICE_RAISED
 ];
+
+export const PRICING_TIER = {
+  TIER_ADULT: 'adult',
+  TIER_CHILDREN: 'children',
+  TIER_SENIOR_CITIZEN: 'seniorCitizen',
+  TIER_MILITARY: 'military',
+  TIER_INFANT: 'infant',
+  TIER_MINOR: 'minor'
+};
