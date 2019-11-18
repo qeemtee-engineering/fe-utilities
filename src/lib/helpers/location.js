@@ -9,7 +9,6 @@ export const getFormattedLocation = location => {
 };
 
 export const getLocationUrl = location => {
-  // TODO: MOVE TO FE UTILITIES
   return `https://www.google.com/maps?z=12&t=m&q=loc:${location.lat}+${location.long}`;
 };
 
