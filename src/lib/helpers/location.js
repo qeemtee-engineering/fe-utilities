@@ -13,7 +13,7 @@ export const getLocationUrl = location => {
   return `https://www.google.com/maps?z=12&t=m&q=loc:${location.lat}+${location.long}`;
 };
 
-export const getPickUpLocation = (activity, currentBooking) => {
+export const getPickUpLocation = (activity, currentBooking, hostdata) => {
   if (
     get(currentBooking, 'pickUp.isAvailable') &&
     get(currentBooking, 'pickUp.radius')
