@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import cloneDeep from 'lodash/cloneDeep';
 
 export const getFormattedLocation = location => {
   let addressLinesCombined = '';
