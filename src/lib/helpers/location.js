@@ -55,7 +55,9 @@ export const getPickUpLocation = (activity, currentBooking, hostdata) => {
     } else if (get(hostdata, 'office.address')) {
       pickUp['location'] = {
         address: getFormattedLocation(get(hostdata, 'office.address')),
-        url: getLocationUrl(get(hostdata, 'office.address'))
+        url: getLocationUrl(get(hostdata, 'office.address')),
+        lat: get(hostdata, 'office.address').lat,
+        long: get(hostdata, 'office.address').long
       };
     }
 
