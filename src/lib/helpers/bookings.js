@@ -7,7 +7,7 @@ import { BOOKING_STATUSES } from '../constants';
 
 export const getBookingStatusTitle = id => {
   const statusFiltered = first(
-    filter(BOOKING_STATUSES, status => status.val == id)
+    filter(BOOKING_STATUSES, status => status.val === id)
   );
   return get(statusFiltered, 'title', '');
 };
@@ -65,8 +65,8 @@ export const getExpiryTime = receivedBookingDetails => {
     .sort((a, b) => a.valueOf() - b.valueOf());
 
   if (
-    paymentHrs.length &&
-    expiryTime.diff(paymentHrs[paymentHrs.length - 1]) >= 0
+    paymentHrs.length
+    && expiryTime.diff(paymentHrs[paymentHrs.length - 1]) >= 0
   ) {
     expiryTime = moment(
       paymentHrs[paymentHrs.length - 1].format('YYYY-MM-DDTHH:mm:ssZ')
@@ -83,13 +83,13 @@ export const canCollectPayment = receivedBookingDetails => {
     }
   });
   if (
-    receivedBookingDetails.status === BOOKING_STATUSES.PAYMENT_CONFIRMED.val ||
-    receivedBookingDetails.status === BOOKING_STATUSES.BOOKING_EXPIRED.val ||
-    receivedBookingDetails.status === BOOKING_STATUSES.BOOKING_COMPLETED.val ||
-    receivedBookingDetails.status === BOOKING_STATUSES.PENDING_SETTLEMENT.val ||
-    receivedBookingDetails.status ===
-      BOOKING_STATUSES.PENDING_CONFIRMATION.val ||
-    receivedBookingDetails.status === BOOKING_STATUSES.BOOKING_CANCELLED.val
+    receivedBookingDetails.status === BOOKING_STATUSES.PAYMENT_CONFIRMED.val
+    || receivedBookingDetails.status === BOOKING_STATUSES.BOOKING_EXPIRED.val
+    || receivedBookingDetails.status === BOOKING_STATUSES.BOOKING_COMPLETED.val
+    || receivedBookingDetails.status === BOOKING_STATUSES.PENDING_SETTLEMENT.val
+    || receivedBookingDetails.status
+      === BOOKING_STATUSES.PENDING_CONFIRMATION.val
+    || receivedBookingDetails.status === BOOKING_STATUSES.BOOKING_CANCELLED.val
   ) {
     canCollect = false;
   }
