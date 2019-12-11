@@ -1,7 +1,7 @@
 export const formatLocationsList = locations => {
   const tempLocations = locations.result;
   tempLocations.forEach(function(location) {
-    location['id'] = location['dialCode'];
+    location['id'] = location['code'];
     location['name'] = location['title'];
   });
   return tempLocations;
@@ -20,7 +20,7 @@ export const getCityTitle = (cities, cityCode) => {
 };
 
 export const getCountryTitle = (countriesList, code) => {
-  return countriesList.filter(country => country.dialCode === code)[0].title;
+  return countriesList.filter(country => country.code === code)[0].title;
 };
 
 export const getCountryId = (code, countriesList) => {
