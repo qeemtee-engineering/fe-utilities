@@ -1,41 +1,28 @@
-export const formatCountries = countries => {
-  let tempCountries = countries.result;
-  tempCountries.forEach(function(country) {
-    country['id'] = country['dialCode'];
-    country['name'] = country['title'];
-    if (country.cities) {
-      country.cities.forEach(function(city) {
-        city['id'] = city['dialCode'];
-        city['name'] = city['title'];
-      });
-    }
+export const formatLocationsList = locations => {
+  const tempLocations = locations.result;
+  tempLocations.forEach(function(location) {
+    location['id'] = location['dialCode'];
+    location['name'] = location['title'];
   });
-  return tempCountries;
+  return tempLocations;
 };
 
 export const getCountry = (countries, code) => {
-  return countries.filter(country => country.dialCode == code)[0];
+  return countries.filter(country => country.code === code)[0];
 };
 
-export const getCity = (countries, countryCode, cityCode) => {
-  return countries
-    .filter(country => country.dialCode == countryCode)[0]
-    .cities.filter(city => city.dialCode == cityCode)[0];
+export const getCity = (cities, cityCode) => {
+  return cities.filter(city => city.code === cityCode)[0];
 };
 
-export const getSelectedCountriesCities = (code, countriesList) => {
-  if (countriesList) {
-    return countriesList.filter(country => country.dialCode == code)[0].cities;
-  }
-  return [];
+export const getCityTitle = (cities, cityCode) => {
+  return cities.filter(city => city.code === cityCode)[0].title;
 };
 
-export const getCityTitle = (countryCode, cityCode, countriesList) => {
-  return countriesList
-    .filter(country => country.dialCode == countryCode)[0]
-    .cities.filter(city => city.dialCode == cityCode)[0].title;
+export const getCountryTitle = (countriesList, code) => {
+  return countriesList.filter(country => country.dialCode === code)[0].title;
 };
 
-export const getCountryTitle = (code, countriesList) => {
-  return countriesList.filter(country => country.dialCode == code)[0].title;
+export const getCountryId = (code, countriesList) => {
+  return countriesList.filter(country => country.code === code)[0].id;
 };
