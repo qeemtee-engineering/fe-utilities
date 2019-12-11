@@ -16,11 +16,13 @@ export const getCity = (cities, cityCode) => {
 };
 
 export const getCityTitle = (cities, cityCode) => {
-  return cities.filter(city => city.code === cityCode)[0].title;
+  const tempCity = cities.filter(city => city.code === cityCode)[0];
+  return tempCity ? tempCity.title : '';
 };
 
 export const getCountryTitle = (countriesList, code) => {
-  return countriesList.filter(country => country.code === code)[0].title;
+  const tempCountry = countriesList.filter(country => country.code === code)[0];
+  return tempCountry ? tempCountry.title : '';
 };
 
 export const getCountryId = (code, countriesList) => {
