@@ -24,5 +24,5 @@ export const getCountryTitle = (countriesList, code) => {
 };
 
 export const getCountryId = (code, countriesList) => {
-  return countriesList.filter(country => country.code === code)[0].id;
+  return countriesList.filter(country => country.code === code)[0]['_id'];
 };
