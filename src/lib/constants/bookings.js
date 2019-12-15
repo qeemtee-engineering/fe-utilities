@@ -151,3 +151,10 @@ export const PRICING_TIER = {
   TIER_INFANT: 'infant',
   TIER_MINOR: 'minor'
 };
+
+export const COMMISSION_MIN = 10;
+export const COMMISSION_MAX = 30;
+export const HOST_COMMISSION_MIN = 50;
+export const HOST_COMMISSION_MAX = 95;
+export const DMC_COMMISSION_MIN = 5;
+export const DMC_COMMISSION_MAX = 50;
