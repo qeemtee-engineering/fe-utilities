@@ -10,7 +10,7 @@ export const getFormattedLocation = location => {
 };
 
 export const getLocationUrl = location => {
-  return `https://www.google.com/maps?z=12&t=m&q=loc:${location.lat}+${location.long}`;
+  return `https://www.google.com/maps?z=12&t=m&q=loc:${location.lat}+${location.lng}`;
 };
 
 export const getPickUpLocation = (activity, currentBooking, hostdata) => {
