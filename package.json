@@ -15,7 +15,7 @@
   "keywords": [
     "frontend"
   ],
-  "author": "Kamran Pirwani",
+  "author": "Faizan Baig",
   "license": "MIT",
   "homepage": "https://github.com/qeemtee/fe-utilities#readme",
   "dependencies": {
@@ -44,5 +44,8 @@
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-sourcemaps": "^0.4.2"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
