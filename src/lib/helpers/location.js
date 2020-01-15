@@ -13,6 +13,14 @@ export const getLocationUrl = location => {
   return `https://www.google.com/maps?z=12&t=m&q=loc:${location.lat}+${location.lng}`;
 };
 
+export const isWithinRadius = (checkPoint, centerPoint, km) => {
+  var ky = 40000 / 360;
+  var kx = Math.cos((Math.PI * centerPoint.lat) / 180.0) * ky;
+  var dx = Math.abs(centerPoint.lng - checkPoint.lng) * kx;
+  var dy = Math.abs(centerPoint.lat - checkPoint.lat) * ky;
+  return Math.sqrt(dx * dx + dy * dy) <= km;
+};
+
 export const getPickUpLocation = (activity, currentBooking, hostdata) => {
   if (
     get(currentBooking, 'pickUp.isAvailable') &&
@@ -31,19 +39,19 @@ export const getPickUpLocation = (activity, currentBooking, hostdata) => {
       // Set default pickup to host address
       if (
         isWithinRadius(
-          get(hostdata, 'office.address'),
+          get(hostdata, 'address'),
           get(activity, 'pickUp.location'),
           get(activity, 'pickUp.radius')
         )
       ) {
-        pickUp['location']['lat'] = get(hostdata, 'office.address').lat;
-        pickUp['location']['lng'] = get(hostdata, 'office.address').lng;
-        pickUp['location']['address'] = getFormattedLocation(
-          get(hostdata, 'office.address')
+        pickUp['location']['lat'] = get(hostdata, 'address').lat;
+        pickUp['location']['lng'] = get(hostdata, 'address').lng;
+        pickUp['location']['fullAddress'] = get(
+          hostdata,
+          'address.fullAddress'
         );
-        pickUp['location']['url'] = getLocationUrl(
-          get(hostdata, 'office.address')
-        );
+
+        pickUp['location']['url'] = getLocationUrl(get(hostdata, 'address'));
       } else if (
         (get(activity, 'pickUp.location'), get(activity, 'pickUp.radius'))
       ) {
@@ -52,12 +60,12 @@ export const getPickUpLocation = (activity, currentBooking, hostdata) => {
           get(activity, 'pickUp.location')
         );
       }
-    } else if (get(hostdata, 'office.address')) {
+    } else if (get(hostdata, 'address')) {
       pickUp['location'] = {
-        address: getFormattedLocation(get(hostdata, 'office.address')),
-        url: getLocationUrl(get(hostdata, 'office.address')),
-        lat: get(hostdata, 'office.address').lat,
-        lng: get(hostdata, 'office.address').lng
+        fullAddress: get(hostdata, 'address.fullAddress'),
+        url: getLocationUrl(get(hostdata, 'address')),
+        lat: get(hostdata, 'address').lat,
+        lng: get(hostdata, 'address').lng
       };
     }
 
@@ -65,12 +73,4 @@ export const getPickUpLocation = (activity, currentBooking, hostdata) => {
   }
 
   return null;
-};
-
-export const isWithinRadius = (checkPoint, centerPoint, km) => {
-  var ky = 40000 / 360;
-  var kx = Math.cos((Math.PI * centerPoint.lat) / 180.0) * ky;
-  var dx = Math.abs(centerPoint.lng - checkPoint.lng) * kx;
-  var dy = Math.abs(centerPoint.lat - checkPoint.lat) * ky;
-  return Math.sqrt(dx * dx + dy * dy) <= km;
 };
