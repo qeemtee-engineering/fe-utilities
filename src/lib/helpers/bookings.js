@@ -51,6 +51,19 @@ export const canCollectPayment = receivedBookingDetails => {
   return canCollect;
 };
 
+export const canModifyBookingAdmin = bookingObj => {
+  if (
+    [
+      BOOKING_STATUSES.BOOKING_RESCHEDULED.val,
+      BOOKING_STATUSES.BOOKING_IN_PROGRESS.val,
+      BOOKING_STATUSES.PAYMENT_CONFIRMED.val
+    ].includes(bookingObj.status)
+  ) {
+    return true;
+  }
+  return false;
+};
+
 export const canModifyBooking = bookingObj => {
   const isBookingAlreadyModified = get(bookingObj, 'slot.rescheduledSlot');
   if (
@@ -72,9 +85,30 @@ export const canModifyBooking = bookingObj => {
   return false;
 };
 
+export const canCancelBookingAdmin = bookingObj => {
+  if (
+    bookingObj.status === BOOKING_STATUSES.BOOKING_CANCELLED.val &&
+    bookingObj.payment.hostCashData
+  ) {
+    return true;
+  }
+  if (bookingObj.status !== BOOKING_STATUSES.PAYMENT_CONFIRMED.val) {
+    return false;
+  }
+  if (
+    [
+      BOOKING_STATUSES.BOOKING_RESCHEDULED.val,
+      BOOKING_STATUSES.BOOKING_IN_PROGRESS.val
+    ].includes(bookingObj.status)
+  ) {
+    return true;
+  }
+  return false;
+};
+
 export const canCancelBooking = bookingObj => {
   if (
-    bookingObj.status === BOOKING_STATUSES.BOOKING_CANCELLED &&
+    bookingObj.status === BOOKING_STATUSES.BOOKING_CANCELLED.val &&
     bookingObj.payment.hostCashData
   ) {
     return true;
