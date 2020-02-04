@@ -263,43 +263,41 @@ export const getExpiryTime = ({
   paymentHrs,
   offset
 }) => {
-  if (Object.keys(booking).length) {
-    let expiryTime = moment(startTime).tz(timezone);
-    if (closure) {
-      expiryTime.subtract(closure, 'hours');
-    }
-
-    paymentHrs = paymentHrs
-      .map(p => {
-        if (p.status) {
-          const endTime = moment(p.endTime).tz(timezone);
-          const current = getWeekDate(
-            p.day + 1,
-            endTime.hour(),
-            endTime.minute(),
-            offset
-          );
-
-          if (p.fullDay) {
-            current.set({ hour: 23, minute: 59, second: 59, millisecond: 0 });
-          } else {
-            current.set({ hour: endTime.hours(), minute: endTime.minutes() });
-          }
-          if (current.format('L') <= moment(expiryTime).format('L')) {
-            return current;
-          }
-        }
-        return null;
-      })
-      .filter(p => p)
-      .sort((a, b) => a.diff(b));
-
-    if (
-      paymentHrs.length &&
-      expiryTime.diff(paymentHrs[paymentHrs.length - 1]) >= 0
-    ) {
-      expiryTime = paymentHrs[paymentHrs.length - 1];
-    }
-    return expiryTime;
+  let expiryTime = moment(startTime).tz(timezone);
+  if (closure) {
+    expiryTime.subtract(closure, 'hours');
   }
+
+  paymentHrs = paymentHrs
+    .map(p => {
+      if (p.status) {
+        const endTime = moment(p.endTime).tz(timezone);
+        const current = getWeekDate(
+          p.day + 1,
+          endTime.hour(),
+          endTime.minute(),
+          offset
+        );
+
+        if (p.fullDay) {
+          current.set({ hour: 23, minute: 59, second: 59, millisecond: 0 });
+        } else {
+          current.set({ hour: endTime.hours(), minute: endTime.minutes() });
+        }
+        if (current.format('L') <= moment(expiryTime).format('L')) {
+          return current;
+        }
+      }
+      return null;
+    })
+    .filter(p => p)
+    .sort((a, b) => a.diff(b));
+
+  if (
+    paymentHrs.length &&
+    expiryTime.diff(paymentHrs[paymentHrs.length - 1]) >= 0
+  ) {
+    expiryTime = paymentHrs[paymentHrs.length - 1];
+  }
+  return expiryTime;
 };
