@@ -21,7 +21,7 @@ export const getBookingStatusSearchParams = statusArray => {
   return params;
 };
 
-const getWeekDate = (dayINeed, endHour, endMin, offset) => {
+const getWeekDate = ({ dayINeed, endHour, endMin, offset, timezone }) => {
   if (
     moment()
       .utcOffset(offset)
@@ -272,12 +272,13 @@ export const getExpiryTime = ({
     .map(p => {
       if (p.status) {
         const endTime = moment(p.endTime).tz(timezone);
-        const current = getWeekDate(
-          p.day + 1,
-          endTime.hour(),
-          endTime.minute(),
+        const current = getWeekDate({
+          dayINeed: p.day + 1,
+          endHour: endTime.hour(),
+          endMin: endTime.minute(),
+          timezone,
           offset
-        );
+        });
 
         if (p.fullDay) {
           current.set({ hour: 23, minute: 59, second: 59, millisecond: 0 });
