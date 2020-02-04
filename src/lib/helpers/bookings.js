@@ -3,6 +3,7 @@ import first from 'lodash/first';
 import get from 'lodash/get';
 import moment from 'moment';
 import 'moment-timezone';
+import spacetime from 'spacetime';
 import { BOOKING_STATUSES } from '../constants';
 
 export const getBookingStatusTitle = id => {
@@ -256,13 +257,8 @@ export const getModifiedSlots = (slots, activityDetails) => {
   return inorderModifiedDatesArray;
 };
 
-export const getExpiryTime = ({
-  startTime,
-  timezone,
-  closure,
-  paymentHrs,
-  offset
-}) => {
+export const getExpiryTime = ({ startTime, timezone, closure, paymentHrs }) => {
+  const offset = spacetime.now(timezone).timezone().current.offset;
   let expiryTime = moment(startTime).tz(timezone);
   if (closure) {
     expiryTime.subtract(closure, 'hours');
