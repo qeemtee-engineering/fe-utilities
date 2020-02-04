@@ -21,13 +21,38 @@ export const getBookingStatusSearchParams = statusArray => {
   return params;
 };
 
-export const getWeekDate = dayINeed => {
-  if (moment().isoWeekday() <= dayINeed) {
-    return moment().isoWeekday(dayINeed);
+const getWeekDate = (dayINeed, endHour, endMin, offset) => {
+  if (
+    moment()
+      .utcOffset(offset)
+      .isoWeekday() === dayINeed &&
+    moment()
+      .tz(timezone)
+      .hour() <= endHour &&
+    moment()
+      .tz(timezone)
+      .hour() == endHour &&
+    moment()
+      .tz(timezone)
+      .minute() <= endMin
+  ) {
+    return moment()
+      .utcOffset(offset)
+      .isoWeekday(dayINeed);
+  } else if (
+    moment()
+      .utcOffset(offset)
+      .isoWeekday() < dayINeed
+  ) {
+    return moment()
+      .utcOffset(offset)
+      .isoWeekday(dayINeed);
+  } else {
+    return moment()
+      .utcOffset(offset)
+      .add(1, 'weeks')
+      .isoWeekday(dayINeed);
   }
-  return moment()
-    .add(1, 'weeks')
-    .isoWeekday(dayINeed);
 };
 
 export const canCollectPayment = receivedBookingDetails => {
@@ -231,22 +256,34 @@ export const getModifiedSlots = (slots, activityDetails) => {
   return inorderModifiedDatesArray;
 };
 
-export const getExpiryTime = (booking, host) => {
+export const getExpiryTime = ({
+  startTime,
+  timezone,
+  closure,
+  paymentHrs,
+  offset
+}) => {
   if (Object.keys(booking).length) {
-    let expiryTime = moment(booking.slot.startTime).tz(booking.slot.timezone);
-    if (booking.slot.closure) {
-      expiryTime.subtract(booking.slot.closure, 'hours');
+    let expiryTime = moment(startTime).tz(timezone);
+    if (closure) {
+      expiryTime.subtract(closure, 'hours');
     }
 
-    const paymentHrs = host.paymentHrs
+    paymentHrs = paymentHrs
       .map(p => {
         if (p.status) {
-          const current = getWeekDate(p.day);
+          const endTime = moment(p.endTime).tz(timezone);
+          const current = getWeekDate(
+            p.day + 1,
+            endTime.hour(),
+            endTime.minute(),
+            offset
+          );
+
           if (p.fullDay) {
             current.set({ hour: 23, minute: 59, second: 59, millisecond: 0 });
           } else {
-            const tempEnd = moment(p.endTime).tz(booking.slot.timezone);
-            current.set({ hour: tempEnd.hours(), minute: tempEnd.minutes() });
+            current.set({ hour: endTime.hours(), minute: endTime.minutes() });
           }
           if (current.format('L') <= moment(expiryTime).format('L')) {
             return current;
