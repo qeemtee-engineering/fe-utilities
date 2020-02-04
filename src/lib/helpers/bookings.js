@@ -29,7 +29,6 @@ export const getWeekDate = ({
   offset,
   timezone
 }) => {
-  console.log({ dayINeed, endHour, endMin, offset, timezone });
   if (
     moment()
       .utcOffset(offset)
