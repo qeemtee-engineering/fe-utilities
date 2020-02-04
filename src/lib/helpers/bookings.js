@@ -22,7 +22,13 @@ export const getBookingStatusSearchParams = statusArray => {
   return params;
 };
 
-const getWeekDate = ({ dayINeed, endHour, endMin, offset, timezone }) => {
+export const getWeekDate = ({
+  dayINeed,
+  endHour,
+  endMin,
+  offset,
+  timezone
+}) => {
   console.log({ dayINeed, endHour, endMin, offset, timezone });
   if (
     moment()
