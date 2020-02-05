@@ -284,7 +284,7 @@ export const getExpiryTime = ({ startTime, timezone, closure, paymentHrs }) => {
           if (
             startTime.tz(timezone).format('L') ===
               expiryTime.tz(timezone).format('L') &&
-            (startTime.diff(expiryTime) >= 0 || endTime.diff(expiryTime) <= 0)
+            startTime.diff(expiryTime) >= 0
           ) {
             return null;
           }
