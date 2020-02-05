@@ -35,14 +35,18 @@ export const getWeekDate = ({
       .isoWeekday() === dayINeed &&
     moment()
       .tz(timezone)
-      .hour() <= endHour &&
-    moment()
-      .tz(timezone)
-      .hour() == endHour &&
-    moment()
-      .tz(timezone)
-      .minute() <= endMin
+      .hour() <= endHour
   ) {
+    if (
+      moment()
+        .tz(timezone)
+        .hour() === endHour &&
+      moment()
+        .tz(timezone)
+        .minute() < endMin
+    ) {
+      return null;
+    }
     return moment()
       .utcOffset(offset)
       .isoWeekday(dayINeed);
@@ -275,12 +279,16 @@ export const getExpiryTime = ({ startTime, timezone, closure, paymentHrs }) => {
       if (p.status) {
         const endTime = moment(p.endTime).tz(timezone);
         const current = getWeekDate({
-          dayINeed: p.day + 1,
+          dayINeed: p.day,
           endHour: endTime.hour(),
           endMin: endTime.minute(),
           timezone,
           offset
         });
+
+        if (!current) {
+          return null;
+        }
 
         if (p.fullDay) {
           current.set({ hour: 23, minute: 59, second: 59, millisecond: 0 });
