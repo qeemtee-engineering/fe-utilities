@@ -22,38 +22,11 @@ export const getBookingStatusSearchParams = statusArray => {
   return params;
 };
 
-export const getWeekDate = ({
-  dayINeed,
-  endHour,
-  endMin,
-  offset,
-  timezone
-}) => {
+const getWeekDate = ({ dayINeed, offset }) => {
   if (
     moment()
       .utcOffset(offset)
-      .isoWeekday() === dayINeed &&
-    moment()
-      .tz(timezone)
-      .hour() <= endHour
-  ) {
-    if (
-      moment()
-        .tz(timezone)
-        .hour() === endHour &&
-      moment()
-        .tz(timezone)
-        .minute() < endMin
-    ) {
-      return null;
-    }
-    return moment()
-      .utcOffset(offset)
-      .isoWeekday(dayINeed);
-  } else if (
-    moment()
-      .utcOffset(offset)
-      .isoWeekday() < dayINeed
+      .isoWeekday() <= dayINeed
   ) {
     return moment()
       .utcOffset(offset)
@@ -277,26 +250,41 @@ export const getExpiryTime = ({ startTime, timezone, closure, paymentHrs }) => {
   paymentHrs = paymentHrs
     .map(p => {
       if (p.status) {
-        const endTime = moment(p.endTime).tz(timezone);
+        let endTime = moment(p.endTime).tz(timezone);
+        let startTime = moment(p.startTime).tz(timezone);
         const current = getWeekDate({
           dayINeed: p.day,
-          endHour: endTime.hour(),
-          endMin: endTime.minute(),
-          timezone,
           offset
         });
 
-        if (!current) {
-          return null;
-        }
-
         if (p.fullDay) {
-          current.set({ hour: 23, minute: 59, second: 59, millisecond: 0 });
+          startTime = current
+            .clone()
+            .set({ hour: 0, minute: 0, second: 0, millisecond: 0 });
+          endTime = current
+            .clone()
+            .set({ hour: 23, minute: 59, second: 59, millisecond: 0 });
         } else {
-          current.set({ hour: endTime.hours(), minute: endTime.minutes() });
+          startTime = current
+            .clone()
+            .set({ hour: startTime.hours(), minute: startTime.minutes() });
+          endTime = current
+            .clone()
+            .set({ hour: endTime.hours(), minute: endTime.minutes() });
         }
-        if (current.format('L') <= moment(expiryTime).format('L')) {
-          return current;
+        if (
+          endTime.tz(timezone).format('L') <=
+            expiryTime.tz(timezone).format('L') &&
+          endTime.diff(expiryTime) > 0
+        ) {
+          if (
+            startTime.tz(timezone).format('L') ===
+              expiryTime.tz(timezone).format('L') &&
+            startTime.diff(expiryTime) >= 0
+          ) {
+            return null;
+          }
+          return endTime;
         }
       }
       return null;
