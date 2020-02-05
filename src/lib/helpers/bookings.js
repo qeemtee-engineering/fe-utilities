@@ -242,7 +242,9 @@ export const getModifiedSlots = (slots, activityDetails) => {
 
 export const getExpiryTime = ({ startTime, timezone, closure, paymentHrs }) => {
   const offset = spacetime.now(timezone).timezone().current.offset;
-  let expiryTime = moment(startTime).tz(timezone);
+  let expiryTime = moment(startTime)
+    .tz(timezone)
+    .set({ millisecond: 0, second: 0 });
   if (closure) {
     expiryTime.subtract(closure, 'hours');
   }
@@ -273,14 +275,16 @@ export const getExpiryTime = ({ startTime, timezone, closure, paymentHrs }) => {
             .set({ hour: endTime.hours(), minute: endTime.minutes() });
         }
         if (
-          endTime.tz(timezone).format('L') <=
+          startTime.tz(timezone).format('L') <=
             expiryTime.tz(timezone).format('L') &&
-          endTime.diff(expiryTime) > 0
+          moment()
+            .tz(timezone)
+            .diff(endTime) < 0
         ) {
           if (
             startTime.tz(timezone).format('L') ===
               expiryTime.tz(timezone).format('L') &&
-            startTime.diff(expiryTime) >= 0
+            (startTime.diff(expiryTime) >= 0 || endTime.diff(expiryTime) <= 0)
           ) {
             return null;
           }
