@@ -2,17 +2,13 @@
   "name": "fe-utilities",
   "version": "0.0.8",
   "description": "Utilities for the frontend repo",
-  "main": "lib/cjs/index.js",
-  "module": "lib/esm/index.js",
+  "main": "lib/main.js",
   "scripts": {
     "start": "rollup --config rollup.config.dev.js --watch",
     "build": "rollup --config rollup.config.js",
+    "webpack-build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "files": [
-    "lib/cjs/*",
-    "lib/esm/*"
-  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/qeemtee/fe-utilities.git"
@@ -35,7 +31,10 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
+    "babel-loader": "^8.0.6",
+    "case-sensitive-paths-webpack-plugin": "^2.3.0",
     "chokidar": "^3.0.1",
+    "clean-webpack-plugin": "^3.0.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.0",
@@ -50,7 +49,11 @@
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
-    "rollup-plugin-terser": "^5.2.0"
+    "rollup-plugin-terser": "^5.2.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-node-externals": "^1.7.2"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
