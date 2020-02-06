@@ -9,26 +9,24 @@ import filesize from 'rollup-plugin-filesize';
 import del from 'rollup-plugin-delete';
 import path from 'path';
 import pkg from './package.json';
+import { terser } from 'rollup-plugin-terser';
 
 export default {
-  input: path.join(__dirname, 'src', 'index.js'),
+  input: {
+    index: path.join(__dirname, 'src', 'index.js'),
+    constants: path.join(__dirname, 'src', 'lib', 'constants', 'index.js'),
+    helpers: path.join(__dirname, 'src', 'lib', 'helpers', 'index.js'),
+    services: path.join(__dirname, 'src', 'lib', 'services', 'index.js')
+  },
   external: [...Object.keys(pkg.dependencies || {})],
   output: [
     {
-      file: path.join(__dirname, 'lib', 'main.bundle.js'),
-      format: 'iife',
-      name: 'fe_utils',
-      sourcemap: true
+      dir: path.join(__dirname, 'lib', 'cjs'),
+      format: 'cjs'
     },
     {
-      file: path.join(__dirname, 'lib', 'main.js'),
-      format: 'cjs',
-      sourcemap: true
-    },
-    {
-      file: path.join(__dirname, 'lib', 'main.es.js'),
-      format: 'es',
-      sourcemap: true
+      dir: path.join(__dirname, 'lib', 'esm'),
+      format: 'esm'
     }
   ],
   plugins: [
@@ -44,6 +42,7 @@ export default {
     minify({
       comments: false
     }),
+    terser(),
     sourceMaps(),
     gzip({
       gzipOptions: {
