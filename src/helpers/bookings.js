@@ -77,6 +77,14 @@ export const canCancelBookingAdmin = bookingObj => {
   if (bookingObj.status < BOOKING_STATUSES.PAYMENT_CONFIRMED.val) {
     return false;
   }
+
+  if (
+    bookingObj.status === BOOKING_STATUSES.BOOKING_CANCELLED.val &&
+    bookingObj.payment.hostCashData
+  ) {
+    return true;
+  }
+
   if (
     [
       BOOKING_STATUSES.BOOKING_RESCHEDULED.val,
