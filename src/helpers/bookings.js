@@ -82,7 +82,7 @@ export const canCancelBookingAdmin = bookingObj => {
     bookingObj.status === BOOKING_STATUSES.BOOKING_CANCELLED.val &&
     bookingObj.payment.hostCashData
   ) {
-    return true;
+    return false;
   }
 
   if (
