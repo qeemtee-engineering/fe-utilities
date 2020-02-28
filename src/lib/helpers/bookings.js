@@ -239,21 +239,21 @@ export const getModifiedSlots = (slots, activityDetails) => {
   return inorderModifiedDatesArray;
 };
 
-export const getExpiryTime = (booking, host) => {
-  if (Object.keys(booking).length) {
-    let expiryTime = moment(booking.slot.startTime).tz(booking.slot.timezone);
-    if (booking.slot.closure) {
-      expiryTime.subtract(booking.slot.closure, 'hours');
+export const getExpiryTime = payload => {
+  if (Object.keys(payload).length) {
+    let expiryTime = moment(payload.startTime).tz(payload.timezone);
+    if (payload.closure) {
+      expiryTime.subtract(payload.closure, 'hours');
     }
 
-    const paymentHrs = host.paymentHrs
+    const paymentHrs = payload.paymentHrs
       .map(p => {
         if (p.status) {
           const current = getWeekDate(p.day);
           if (p.fullDay) {
             current.set({ hour: 23, minute: 59, second: 59, millisecond: 0 });
           } else {
-            const tempEnd = moment(p.endTime).tz(booking.slot.timezone);
+            const tempEnd = moment(p.endTime).tz(payload.timezone);
             current.set({ hour: tempEnd.hours(), minute: tempEnd.minutes() });
           }
           if (current.format('L') <= moment(expiryTime).format('L')) {
