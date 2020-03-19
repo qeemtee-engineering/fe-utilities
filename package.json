@@ -1,6 +1,6 @@
 {
   "name": "fe-utilities",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Utilities for the frontend repo",
   "main": "lib/main.js",
   "scripts": {

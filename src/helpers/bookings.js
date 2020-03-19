@@ -89,7 +89,8 @@ export const canCancelBookingAdmin = bookingObj => {
     [
       BOOKING_STATUSES.BOOKING_RESCHEDULED.val,
       BOOKING_STATUSES.BOOKING_IN_PROGRESS.val,
-      BOOKING_STATUSES.PAYMENT_CONFIRMED.val
+      BOOKING_STATUSES.PAYMENT_CONFIRMED.val,
+      BOOKING_STATUSES.PENDING_SETTLEMENT.val
     ].includes(bookingObj.status)
   ) {
     return true;
