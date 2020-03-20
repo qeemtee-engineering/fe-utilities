@@ -142,6 +142,19 @@ export const canCancelBooking = bookingObj => {
   return false;
 };
 
+export const hostMerchantModifyPrivilege = bookingObj => {
+  const isBookingAlreadyModified = get(bookingObj, 'slot.rescheduledSlot');
+
+  if (
+    (bookingObj.status === BOOKING_STATUSES.BOOKING_IN_PROGRESS.val ||
+      bookingObj.status === BOOKING_STATUSES.PENDING_SETTLEMENT.val) &&
+    !isBookingAlreadyModified
+  ) {
+    return true;
+  }
+  return false;
+};
+
 export const getModifiedSlots = (slots, activityDetails) => {
   let modifiedDatesArray = [];
   const showDuration = ['fullDay', 'halfDay', 'session'].includes(
